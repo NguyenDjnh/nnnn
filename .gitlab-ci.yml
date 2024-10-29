@@ -1,0 +1,26 @@
+image: maven:3.6.3-jdk-8  # Sử dụng Docker image có Maven và JDK
+
+stages:
+  - build
+  - test
+
+# Job để build dự án
+build-job:
+  stage: build
+  script:
+    - mvn clean install  # Build dự án với Maven
+  only:
+    - master  # Chạy job này khi commit lên nhánh master
+
+# Job để chạy kiểm thử JUnit
+test-job:
+  stage: test
+  script:
+    - mvn test  # Chạy các bài kiểm thử JUnit
+  artifacts:
+    paths:
+      - target/surefire-reports/  # Lưu kết quả kiểm thử của JUnit
+    reports:
+      junit: target/surefire-reports/*.xml  # Định nghĩa báo cáo JUnit
+  only:
+    - merge_requests  # Chạy job này khi có merge request
