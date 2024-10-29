@@ -12,6 +12,4 @@ public class CalculatorTest {
     public void testAdditionFail() {
         int result = calculator.add(5, 5);
         // Cố tình để giá trị kỳ vọng sai (11 thay vì 10)
-        Assert.assertEquals(result, 11, "Kết quả cộng 5 + 5 phải là 11 (sai có chủ ý)");
-    }
-}
+       
