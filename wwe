@@ -1,0 +1,17 @@
+package com.example.calculator;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class CalculatorTest {
+
+    Calculator calculator = new Calculator();
+
+    // Kiểm thử cộng nhưng cố tình để giá trị sai
+    @Test
+    public void testAdditionFail() {
+        int result = calculator.add(5, 5);
+        // Cố tình để giá trị kỳ vọng sai (11 thay vì 10)
+        Assert.assertEquals(result, 11, "Kết quả cộng 5 + 5 phải là 11 (sai có chủ ý)");
+    }
+}
